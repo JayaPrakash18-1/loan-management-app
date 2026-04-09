@@ -1,3 +1,3 @@
-const app = require("../../loan-app-backend/src/app.js");
+const app = require("../backend/app.js");
 
 module.exports = app;
