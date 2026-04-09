@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loans</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button class="logout" onclick="logout()">Logout</button>
+
+<div class="container">
+
+<h2>Add Loan</h2>
+
+<input id="name" placeholder="Borrower Name">
+
+<input id="phone" placeholder="Phone">
+
+<input id="address" placeholder="Address">
+
+<input id="principal" placeholder="Principal">
+
+<input id="rate" placeholder="Interest Rate">
+
+<select id="type">
+  <option value="SI">Simple Interest</option>
+  <option value="CI">Compound Interest</option>
+</select>
+
+<input id="date" type="date">
+
+<button onclick="addLoan()">Add Loan</button>
+
+<p id="message"></p>
+
+</div>
+
+<h2>Your Loans</h2>
+
+<button onclick="loadLoans()">Refresh</button>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Total</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="loanTable"></tbody>
+
+</table>
+
+<script src="js/loans.js"></script>
+
+</body>
+</html>
