@@ -6,7 +6,7 @@ export default function History({ token }) {
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/history', {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/history`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())

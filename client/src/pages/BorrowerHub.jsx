@@ -9,7 +9,7 @@ export default function BorrowerHub({ token }) {
   const [paymentMessage, setPaymentMessage] = useState('');
 
   const fetchLoans = () => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/loans/taken', {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/loans/taken`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
