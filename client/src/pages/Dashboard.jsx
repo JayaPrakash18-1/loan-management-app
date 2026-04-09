@@ -6,14 +6,14 @@ export default function Dashboard({ token }) {
   const [qrCode, setQrCode] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/dashboard/summary`, {
+    fetch(`${import.meta.env.VITE_API_URL || '/api'}/dashboard/summary`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
     .then(data => setSummary(data))
     .catch(console.error);
 
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/qr`, {
+    fetch(`${import.meta.env.VITE_API_URL || '/api'}/auth/qr`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
@@ -26,7 +26,7 @@ export default function Dashboard({ token }) {
     if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => {
-      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/auth/qr`, {
+      fetch(`${import.meta.env.VITE_API_URL || '/api'}/auth/qr`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ qr_base64: reader.result })

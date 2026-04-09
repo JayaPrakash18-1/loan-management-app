@@ -20,7 +20,7 @@ export default function LenderHub({ token }) {
   });
 
   const fetchLoans = () => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/loans/given`, {
+    fetch(`${import.meta.env.VITE_API_URL || '/api'}/loans/given`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
@@ -28,7 +28,7 @@ export default function LenderHub({ token }) {
   };
 
   const fetchPending = () => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/pending`, {
+    fetch(`${import.meta.env.VITE_API_URL || '/api'}/payments/pending`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
@@ -43,7 +43,7 @@ export default function LenderHub({ token }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/loans`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || '/api'}/loans`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(formData)
@@ -62,7 +62,7 @@ export default function LenderHub({ token }) {
   const handleApprove = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/${showVerifyModal.id}/approve`, {
+      await fetch(`${import.meta.env.VITE_API_URL || '/api'}/payments/${showVerifyModal.id}/approve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ payment_type: approveType })
@@ -79,7 +79,7 @@ export default function LenderHub({ token }) {
   const handleManualPayment = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/${showManualModal.id}/manual`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || '/api'}/payments/${showManualModal.id}/manual`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ amount: manualAmount, payment_type: manualType })
@@ -100,7 +100,7 @@ export default function LenderHub({ token }) {
   const handleReject = async (paymentId) => {
     if(!window.confirm("Reject this payment claim?")) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/${paymentId}/reject`, {
+      await fetch(`${import.meta.env.VITE_API_URL || '/api'}/payments/${paymentId}/reject`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
       });

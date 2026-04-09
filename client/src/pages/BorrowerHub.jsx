@@ -9,7 +9,7 @@ export default function BorrowerHub({ token }) {
   const [paymentMessage, setPaymentMessage] = useState('');
 
   const fetchLoans = () => {
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/loans/taken`, {
+    fetch(`${import.meta.env.VITE_API_URL || '/api'}/loans/taken`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())
@@ -21,7 +21,7 @@ export default function BorrowerHub({ token }) {
   const handlePayment = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/payments/${showPaymentModal.id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || '/api'}/payments/${showPaymentModal.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ amount: paymentAmount, message: paymentMessage })
