@@ -18,7 +18,8 @@ export default function Register() {
         body: JSON.stringify(formData)
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || data.error || 'Registration failed');
+      const errorStr = data.message || (typeof data.error === 'string' ? data.error : data.error?.message) || 'Registration failed';
+      if (!res.ok) throw new Error(errorStr);
       
       setSuccess(`Registered! Your unique App ID is ${data.app_id}`);
       setTimeout(() => navigate('/login'), 4000);

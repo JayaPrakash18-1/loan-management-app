@@ -15,7 +15,8 @@ export default function Login({ onLogin }) {
         body: JSON.stringify({ email, password })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || data.error || 'Login failed');
+      const errorStr = data.message || (typeof data.error === 'string' ? data.error : data.error?.message) || 'Login failed';
+      if (!res.ok) throw new Error(errorStr);
       onLogin(data.token, data.user);
     } catch (err) {
       setError(err.message);
